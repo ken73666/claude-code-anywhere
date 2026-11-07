@@ -12,13 +12,13 @@ Facts about Anthropic's features (Remote Control, cloud sessions) come from Anth
 
 Guides are being added over the next two weeks, each tested before it lands:
 
-1. Run Claude Code on a VPS
+1. [Run Claude Code on a VPS](guides/01-run-claude-code-on-a-vps.md)
 2. Claude Code on your phone
 3. Keep sessions alive: tmux and systemd
 4. API keys and gateways (OpenRouter, company gateways, Codex providers)
 5. Server hardening checklist
 
-Plus copy-paste templates: tmux config, systemd units, sshd drop-in, ufw script, fail2ban jail, and Claude Code / Codex config examples.
+Plus copy-paste templates: tmux config, session script, systemd units, sshd drop-in, ufw script, fail2ban jail, Claude Code settings examples, and Codex config example.
 
 Watch or star the repo to follow along. Issues with requests and corrections are welcome.
 
