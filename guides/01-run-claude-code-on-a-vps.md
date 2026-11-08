@@ -67,3 +67,60 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
+
+## 4. Sign in
+
+You can use a claude.ai subscription or an Anthropic Console API key.
+
+**Subscription login.** Run `claude`. There is no browser on the server, so copy the login URL (press `c` in the prompt), open it on your own computer, sign in, and paste the code back at the `Paste code here` prompt. If pasting does nothing, run `claude auth login` instead. Claude Code requires a Pro, Max, Ultra, Team, Enterprise, or Console account; the free claude.ai plan does not include it.
+
+**API key.** Put it in the user-level settings file, not in a project:
+
+```json
+{
+  "env": {
+    "ANTHROPIC_API_KEY": "YOUR_API_KEY"
+  }
+}
+```
+
+Save that as `~/.claude/settings.json`, then `chmod 600 ~/.claude/settings.json`. Run `/status` inside Claude Code to confirm which credential is active. More in guide 04.
+
+## 5. Run it inside tmux
+
+A plain SSH session kills your process when the connection drops. Use tmux:
+
+```bash
+sudo apt install tmux
+tmux new -A -s work     # attach if "work" exists, create it if not
+claude
+# Ctrl+b, then d, to detach
+tmux ls
+tmux attach -t work
+```
+
+tmux survives disconnects but not a server reboot. For auto-start after a reboot, see guide 03.
+
+## 6. Lock it down
+
+Before you put credentials on the box, do at least: key-only SSH, a firewall, fail2ban, non-root user. Follow guide 05.
+
+## 7. Estimate the cost
+
+Total = server rental + model usage. The server is a flat rate that accrues while it exists, not while you use it. With a subscription, usage counts against your plan limits. With an API key you pay per token, and heavy autonomous runs can cost more than the server. Run your real workflow for a week, record the two bills separately, and extrapolate.
+
+## Troubleshooting
+
+| Symptom | Fix |
+| --- | --- |
+| `claude: command not found` | Add `~/.local/bin` to PATH (above) |
+| `Killed` during install | Add swap or move to a bigger plan |
+| Install script returns HTML or 403 | Proxy, network filter, or unsupported region. Set `HTTPS_PROXY` if behind a proxy |
+| OAuth "Invalid code" | Code expired or truncated. Retry quickly, copy the whole URL with `c` |
+| Auth errors after a while | Run `/login` again, check the server clock, run `/status` to see if `ANTHROPIC_API_KEY` overrides your subscription |
+| Session gone after reconnecting | You ran `claude` outside tmux |
+| Remote Control will not start | Check login and base-URL limits, then `claude remote-control --verbose` |
+
+## Prefer not to run the server yourself?
+
+Everything above works on any VPS. If you would rather skip the server administration, a managed dedicated server is the same idea with the setup done. One example is [AlwaysAgent](https://alwaysagent.app) (not open for sign-ups yet), which is maintained by the authors of this repo.
