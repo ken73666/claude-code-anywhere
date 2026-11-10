@@ -14,7 +14,7 @@ Guides are being added over the next two weeks, each tested before it lands:
 
 1. [Run Claude Code on a VPS](guides/01-run-claude-code-on-a-vps.md)
 2. Claude Code on your phone
-3. Keep sessions alive: tmux and systemd
+3. [Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md)
 4. API keys and gateways (OpenRouter, company gateways, Codex providers)
 5. Server hardening checklist
 
