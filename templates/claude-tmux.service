@@ -1,0 +1,24 @@
+# claude-tmux.service - systemd USER unit that recreates a tmux session at boot.
+# Purpose: after a reboot you can SSH in and run `tmux attach -t work`.
+# Install:
+#   mkdir -p ~/.config/systemd/user && cp claude-tmux.service ~/.config/systemd/user/
+#   sudo loginctl enable-linger "$USER"      # run user services without an active login
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now claude-tmux.service
+# Check the tmux path first: command -v tmux   (edit ExecStart/ExecStop if not /usr/bin/tmux)
+# Edit the -c directory below to your project. %h expands to your home directory.
+
+[Unit]
+Description=tmux session for Claude Code
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+# claude lives in ~/.local/bin, which systemd does not add to PATH
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/tmux new-session -d -s work -c %h/projects
+ExecStop=/usr/bin/tmux kill-session -t work
+
+[Install]
+WantedBy=default.target
