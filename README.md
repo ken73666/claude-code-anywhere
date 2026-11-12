@@ -18,7 +18,7 @@ Guides are being added over the next two weeks, each tested before it lands:
 4. API keys and gateways (OpenRouter, company gateways, Codex providers)
 5. Server hardening checklist
 
-Plus copy-paste templates: [tmux config](templates/tmux.conf), [session script](templates/claude-session.sh), systemd units, sshd drop-in, ufw script, fail2ban jail, Claude Code settings examples, and Codex config example.
+Plus copy-paste templates: [tmux config](templates/tmux.conf), [session script](templates/claude-session.sh), [systemd units](templates/claude-tmux.service), sshd drop-in, ufw script, fail2ban jail, Claude Code settings examples, and Codex config example.
 
 Watch or star the repo to follow along. Issues with requests and corrections are welcome.
 

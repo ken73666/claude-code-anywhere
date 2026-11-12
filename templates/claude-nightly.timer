@@ -1,0 +1,13 @@
+# claude-nightly.timer - triggers claude-nightly.service every day at 03:00 (server local time).
+# Purpose: schedule for the headless run. Persistent=true runs a missed job after the machine was off.
+# Install: see claude-nightly.service
+
+[Unit]
+Description=Nightly headless Claude Code run
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

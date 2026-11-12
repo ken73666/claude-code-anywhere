@@ -1,0 +1,20 @@
+# claude-nightly.service - run one headless Claude Code prompt (non-interactive mode, -p).
+# Purpose: scheduled maintenance task; pair with claude-nightly.timer.
+# Install:
+#   cp claude-nightly.service claude-nightly.timer ~/.config/systemd/user/
+#   systemctl --user daemon-reload && systemctl --user enable --now claude-nightly.timer
+# Test once:  systemctl --user start claude-nightly.service ; journalctl --user -u claude-nightly.service
+# Auth: unattended runs need ANTHROPIC_API_KEY in ~/.claude/settings.json (or an apiKeyHelper).
+# Safety: pre-approve only what the job needs in settings "permissions"; have it work on a branch.
+# EDIT: WorkingDirectory and the prompt below.
+
+[Unit]
+Description=Nightly headless Claude Code run
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/myapp
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+# Stop a stuck run after 2 hours
+TimeoutStartSec=2h
+ExecStart=%h/.local/bin/claude -p "Check for outdated dependencies, make updates on a new branch, run the tests, and summarise the result."
