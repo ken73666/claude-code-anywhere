@@ -16,9 +16,9 @@ Guides are being added over the next two weeks, each tested before it lands:
 2. Claude Code on your phone
 3. [Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md)
 4. API keys and gateways (OpenRouter, company gateways, Codex providers)
-5. Server hardening checklist
+5. [Server hardening checklist](guides/05-server-hardening-checklist.md)
 
-Plus copy-paste templates: [tmux config](templates/tmux.conf), [session script](templates/claude-session.sh), [systemd units](templates/claude-tmux.service), sshd drop-in, ufw script, fail2ban jail, Claude Code settings examples, and Codex config example.
+Plus copy-paste templates: [tmux config](templates/tmux.conf), [session script](templates/claude-session.sh), [systemd units](templates/claude-tmux.service), [sshd drop-in](templates/00-hardening.conf), ufw script, fail2ban jail, Claude Code settings examples, and Codex config example.
 
 Watch or star the repo to follow along. Issues with requests and corrections are welcome.
 

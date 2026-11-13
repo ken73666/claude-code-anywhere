@@ -2,7 +2,7 @@
 
 Last updated: 2026-11
 
-A small Linux server, the official installer, and tmux are enough to keep Claude Code working after you close your laptop. This guide takes a fresh Debian/Ubuntu VPS to a working session. Phone access is in guide 02, keep-alive in [03](03-keep-sessions-alive-tmux-systemd.md), credentials in 04, hardening in 05.
+A small Linux server, the official installer, and tmux are enough to keep Claude Code working after you close your laptop. This guide takes a fresh Debian/Ubuntu VPS to a working session. Phone access is in guide 02, keep-alive in [03](03-keep-sessions-alive-tmux-systemd.md), credentials in 04, hardening in [05](05-server-hardening-checklist.md).
 
 ## Why a server
 
@@ -103,7 +103,7 @@ tmux survives disconnects but not a server reboot. For auto-start after a reboot
 
 ## 6. Lock it down
 
-Before you put credentials on the box, do at least: key-only SSH, a firewall, fail2ban, non-root user. Follow guide 05.
+Before you put credentials on the box, do at least: key-only SSH, a firewall, fail2ban, non-root user. Follow [guide 05](05-server-hardening-checklist.md).
 
 ## 7. Estimate the cost
 
