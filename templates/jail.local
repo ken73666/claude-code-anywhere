@@ -1,0 +1,16 @@
+# jail.local - fail2ban basics for SSH.
+# Purpose: temporarily ban IPs with repeated failed SSH logins.
+# Install: sudo cp jail.local /etc/fail2ban/jail.local && sudo systemctl restart fail2ban
+# Check:   sudo fail2ban-client status sshd
+# If fail2ban fails to start on a system without /var/log/auth.log, add "backend = systemd" under [sshd]
+# and install python3-systemd (the systemd backend needs the systemd Python library). Do not edit jail.conf; use this file instead.
+
+[DEFAULT]
+# Ban for 1 hour after 5 failures within 10 minutes
+bantime  = 1h
+findtime = 10m
+maxretry = 5
+
+[sshd]
+enabled = true
+port    = ssh
