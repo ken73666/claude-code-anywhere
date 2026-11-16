@@ -1,0 +1,12 @@
+// settings.gateway.example.jsonc - route Claude Code through an LLM gateway or relay.
+// Purpose: custom base URL plus a bearer token.
+// Install: remove all // comment lines, save as ~/.claude/settings.json, chmod 600.
+// Use the exact URL your provider documents. If you were logged in with claude.ai, run /logout first.
+// Verify with /status: expect "Anthropic base URL" and "Auth token" rows.
+// Note: Remote Control is unavailable while ANTHROPIC_BASE_URL points away from api.anthropic.com.
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://llm-gateway.example.com",
+    "ANTHROPIC_AUTH_TOKEN": "YOUR_GATEWAY_TOKEN"
+  }
+}

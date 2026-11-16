@@ -73,8 +73,8 @@ systemctl --user start claude-nightly.service    # run once now to test
 
 Notes:
 
-- In `-p` mode the API key is used without a prompt, so authenticate unattended jobs with `ANTHROPIC_API_KEY` in `~/.claude/settings.json` or an `apiKeyHelper` (see guide 04). `claude setup-token` generates a long-lived OAuth token for `CLAUDE_CODE_OAUTH_TOKEN` for subscription users.
-- An unattended run cannot answer permission prompts. Pre-approve only what the job needs in the `permissions` section of settings (see `settings.user.example.jsonc`) and have the job work on a branch.
+- In `-p` mode the API key is used without a prompt, so authenticate unattended jobs with `ANTHROPIC_API_KEY` in `~/.claude/settings.json` or an `apiKeyHelper` (see [guide 04](04-api-keys-and-gateways.md)). `claude setup-token` generates a long-lived OAuth token for `CLAUDE_CODE_OAUTH_TOKEN` for subscription users.
+- An unattended run cannot answer permission prompts. Pre-approve only what the job needs in the `permissions` section of settings (see [`settings.user.example.jsonc`](../templates/settings.user.example.jsonc)) and have the job work on a branch.
 - systemd does not load your shell profile. The unit sets `PATH` explicitly so `~/.local/bin/claude` is found.
 
 ## 3. Habits that save you

@@ -84,7 +84,7 @@ chmod 600 ~/.claude/settings.json
 - Claude Code stores subscription credentials in `~/.claude/.credentials.json` with mode 0600 on Linux. Give anything you write the same mode.
 - Never put credentials in a project's committed `.claude/settings.json`.
 - If you use `.claude/settings.local.json`, make sure `.gitignore` covers it: `echo '.claude/settings.local.json' >> .gitignore`.
-- Use a spend limit on every API key, and rotate on any doubt (guide 04).
+- Use a spend limit on every API key, and rotate on any doubt ([guide 04](04-api-keys-and-gateways.md)).
 
 ## 7. Git credentials
 
@@ -101,7 +101,7 @@ Add write access only if the agent needs to push. Prefer having it push to a bra
 
 - Run Claude Code as your normal user, never as root.
 - Review permission prompts instead of blanket-approving commands.
-- For unattended jobs, pre-approve only what the job needs with `permissions` in settings and deny reads of secret files. Example: `templates/settings.user.example.jsonc`.
+- For unattended jobs, pre-approve only what the job needs with `permissions` in settings and deny reads of secret files. Example: [`templates/settings.user.example.jsonc`](../templates/settings.user.example.jsonc).
 - Keep anything you would not want leaked out of directories the agent works in.
 - Work on branches, so changes are reviewable and reversible.
 

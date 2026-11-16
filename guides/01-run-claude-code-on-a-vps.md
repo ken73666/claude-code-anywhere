@@ -2,7 +2,7 @@
 
 Last updated: 2026-11
 
-A small Linux server, the official installer, and tmux are enough to keep Claude Code working after you close your laptop. This guide takes a fresh Debian/Ubuntu VPS to a working session. Phone access is in guide 02, keep-alive in [03](03-keep-sessions-alive-tmux-systemd.md), credentials in 04, hardening in [05](05-server-hardening-checklist.md).
+A small Linux server, the official installer, and tmux are enough to keep Claude Code working after you close your laptop. This guide takes a fresh Debian/Ubuntu VPS to a working session. Phone access is in guide 02, keep-alive in [03](03-keep-sessions-alive-tmux-systemd.md), credentials in [04](04-api-keys-and-gateways.md), hardening in [05](05-server-hardening-checklist.md).
 
 ## Why a server
 
@@ -84,7 +84,7 @@ You can use a claude.ai subscription or an Anthropic Console API key.
 }
 ```
 
-Save that as `~/.claude/settings.json`, then `chmod 600 ~/.claude/settings.json`. Run `/status` inside Claude Code to confirm which credential is active. More in guide 04.
+Save that as `~/.claude/settings.json`, then `chmod 600 ~/.claude/settings.json`. Run `/status` inside Claude Code to confirm which credential is active. More in [guide 04](04-api-keys-and-gateways.md).
 
 ## 5. Run it inside tmux
 
