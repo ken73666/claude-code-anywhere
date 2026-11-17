@@ -50,6 +50,28 @@ When set, the key is used instead of your subscription "even if you are logged i
 
 Use the exact URL the provider documents. An extra `/v1` or a stale value causes connection errors, 404s, or auth failures. Slow gateways may need a larger `API_TIMEOUT_MS`. If you were logged in with claude.ai, run `/logout` first to avoid an auth-conflict warning. Setting only the base URL without a credential variable keeps your saved login in use.
 
+## Option 3: OpenRouter
+
+OpenRouter documents a Claude Code integration. Using shell exports:
+
+```bash
+export OPENROUTER_API_KEY="YOUR_OPENROUTER_KEY"
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
+export ANTHROPIC_API_KEY=""     # must be explicitly empty
+```
+
+Points that matter:
+
+- The base URL is `https://openrouter.ai/api`, without `/v1`.
+- Define the key variable before the line that references it, or the token expands to empty and you get auth errors.
+- `/logout` first if you were signed in to Anthropic, then restart `claude`.
+- Do not use a project `.env` file; the native install does not read it.
+- OpenRouter states Claude Code "is only guaranteed to work with the Anthropic first-party provider". Anthropic's docs say it does not support routing Claude Code to non-Claude models through any gateway. Test any non-Claude model on a small task first.
+- OpenRouter routes between providers behind one model name. Its provider-routing settings (`provider.order`, `provider.only`) can pin one; check OpenRouter's docs for how to apply them in your setup.
+
+See [`templates/settings.openrouter.example.jsonc`](../templates/settings.openrouter.example.jsonc) for the settings-file form.
+
 ## Where to put it
 
 The documented places are `~/.claude/settings.json` (all projects) and `.claude/settings.local.json` (one project). Claude Code reads the `env` block directly from the file, so it works no matter how `claude` was launched, including background agents and systemd units. Shell-only exports do not reliably reach those.
@@ -79,3 +101,42 @@ Credential precedence, highest first (from Anthropic's authentication docs): clo
 ```
 
 The script must print only the key to stdout and exit 0. A banner or log line breaks it. `/login` does nothing while a helper is set, because the helper outranks a saved login.
+
+## Model variables
+
+To pin models, use `ANTHROPIC_MODEL`, `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL`, and `CLAUDE_CODE_SUBAGENT_MODEL`. `ANTHROPIC_SMALL_FAST_MODEL` is deprecated; use the Haiku variable. Model IDs change often and differ per provider. Copy them from your provider's current documentation rather than from a blog post. A `[1m]` suffix on a model ID selects a 1M context window where the model supports it.
+
+Some vendors publish an Anthropic-compatible endpoint and a Claude Code page in their docs (DeepSeek, Kimi/Moonshot, Zhipu GLM, Alibaba Model Studio, and MiniMax all do). Those endpoints are provided by the vendors, not by Anthropic. Use their docs for URLs and model names.
+
+## Codex CLI
+
+Codex has its own config. Log in with an API key:
+
+```bash
+printenv OPENAI_API_KEY | codex login --with-api-key
+```
+
+For a custom provider, edit `~/.codex/config.toml` (see [`templates/codex-config.example.toml`](../templates/codex-config.example.toml)). Project-level `.codex/config.toml` cannot set providers. To change the address of the built-in OpenAI provider, set `openai_base_url` instead of defining a new provider. Codex cloud requires signing in with ChatGPT; API-key login covers local CLI use.
+
+## Keep the key safe
+
+- Treat it like a password. Keep it out of git.
+- Set a spend limit. In the Anthropic Console, use workspaces and a workspace spend limit; OpenRouter lets you set a credit limit on an individual API key.
+- Use one key per purpose so you can revoke one without breaking the others.
+- Rotate: create a new key, update the server, then revoke the old one. A revoked key surfaces as "Invalid API key".
+- If a key lands in a log, screenshot, or repo, revoke it immediately.
+- On shared machines, `chmod 600` on every file that holds a key.
+
+## Troubleshooting
+
+| Symptom | Likely cause and fix |
+| --- | --- |
+| Auth-conflict warning | Login plus environment credential. `/status`, then unset the variable or `/logout` |
+| Old key keeps coming back | It is exported in `~/.bashrc`, `~/.zshrc`, or `~/.profile`. Remove it there too |
+| "Invalid API key" | Typo, trailing whitespace or newline, revoked key, or a stale key from a `.env` file |
+| 401 behind a gateway | Wrong variable. Try `ANTHROPIC_AUTH_TOKEN` vs `ANTHROPIC_API_KEY` as the provider says |
+| 403 | Inactive subscription, missing Console role, corporate proxy, or unsupported region |
+| "This organization has been disabled" | An old `ANTHROPIC_API_KEY` from another employer or project is overriding your login. Unset it |
+| 404 or connection errors | Wrong `ANTHROPIC_BASE_URL` (extra `/v1`, wrong path) |
+| 400 about unrecognized fields | Upstream rejects fields Claude Code sends. Anthropic documents `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` for gateways |
+| Asked to log in even though the key works | The `env` block is in a project settings file. Move it to `~/.claude/settings.json` |

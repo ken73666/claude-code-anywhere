@@ -1,0 +1,14 @@
+// settings.openrouter.example.jsonc - Claude Code through OpenRouter.
+// Purpose: same four values as OpenRouter's documented shell exports, in a settings file.
+// Install: remove all // comment lines, save as ~/.claude/settings.json, chmod 600. /logout first
+//          if you were signed in to Anthropic, then restart claude.
+// Base URL has no /v1. ANTHROPIC_API_KEY must be explicitly empty.
+// Verify with /status: expect "Auth token: ANTHROPIC_AUTH_TOKEN" and "Anthropic base URL: https://openrouter.ai/api".
+// OpenRouter only guarantees Claude Code with the Anthropic first-party provider; see guide 04.
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "YOUR_OPENROUTER_KEY",
+    "ANTHROPIC_API_KEY": ""
+  }
+}
