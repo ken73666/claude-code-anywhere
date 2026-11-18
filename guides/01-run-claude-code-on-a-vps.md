@@ -2,7 +2,7 @@
 
 Last updated: 2026-11
 
-A small Linux server, the official installer, and tmux are enough to keep Claude Code working after you close your laptop. This guide takes a fresh Debian/Ubuntu VPS to a working session. Phone access is in guide 02, keep-alive in [03](03-keep-sessions-alive-tmux-systemd.md), credentials in [04](04-api-keys-and-gateways.md), hardening in [05](05-server-hardening-checklist.md).
+A small Linux server, the official installer, and tmux are enough to keep Claude Code working after you close your laptop. This guide takes a fresh Debian/Ubuntu VPS to a working session. Phone access is in [guide 02](02-claude-code-on-your-phone.md), keep-alive in [03](03-keep-sessions-alive-tmux-systemd.md), credentials in [04](04-api-keys-and-gateways.md), hardening in [05](05-server-hardening-checklist.md).
 
 ## Why a server
 

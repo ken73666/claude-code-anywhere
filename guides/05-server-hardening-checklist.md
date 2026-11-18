@@ -107,7 +107,7 @@ Add write access only if the agent needs to push. Prefer having it push to a bra
 
 ## 9. Optional: SSH only over Tailscale
 
-If you reach the server from your own devices only, you can avoid public SSH altogether. Install Tailscale on the server and your devices (guide 02), confirm you can connect via the Tailscale name, then close the public port:
+If you reach the server from your own devices only, you can avoid public SSH altogether. Install Tailscale on the server and your devices ([guide 02](02-claude-code-on-your-phone.md)), confirm you can connect via the Tailscale name, then close the public port:
 
 ```bash
 sudo ufw allow in on tailscale0 to any port 22 proto tcp
