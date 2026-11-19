@@ -8,19 +8,63 @@ Claude Code is a terminal program: it runs where you start it. Close the laptop 
 
 Facts about Anthropic's features (Remote Control, cloud sessions) come from Anthropic's public documentation as of November 2026. Plan names and limits change, so check the linked docs before you commit.
 
-## What's here (work in progress)
+## Which guide do I need?
 
-Guides are being added over the next two weeks, each tested before it lands:
+| I want to... | Read |
+| --- | --- |
+| Keep Claude Code running after I close my laptop | [01 Run Claude Code on a VPS](guides/01-run-claude-code-on-a-vps.md) |
+| Check on or steer a session from my phone | [02 Claude Code on your phone](guides/02-claude-code-on-your-phone.md) |
+| Stop sessions dying on SSH drops or reboots | [03 Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md) |
+| Use an API key, OpenRouter, or a company gateway | [04 API keys and gateways](guides/04-api-keys-and-gateways.md) |
+| Harden a fresh server before putting credentials on it | [05 Server hardening checklist](guides/05-server-hardening-checklist.md) |
+| Just copy a working config | [templates/](templates/) |
 
-1. [Run Claude Code on a VPS](guides/01-run-claude-code-on-a-vps.md)
-2. [Claude Code on your phone](guides/02-claude-code-on-your-phone.md)
-3. [Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md)
-4. [API keys and gateways (OpenRouter, company gateways, Codex providers)](guides/04-api-keys-and-gateways.md)
-5. [Server hardening checklist](guides/05-server-hardening-checklist.md)
+### Decision tree
 
-Plus copy-paste templates: [tmux config](templates/tmux.conf), [session script](templates/claude-session.sh), [systemd units](templates/claude-tmux.service), [sshd drop-in](templates/00-hardening.conf), [ufw script](templates/ufw-setup.sh), [fail2ban jail](templates/jail.local), [Claude Code settings examples](templates/settings.user.example.jsonc), and [Codex config example](templates/codex-config.example.toml).
+1. **Is your work on GitHub, and do you have a paid Claude plan with a claude.ai login?**
+   Start with Anthropic's cloud sessions. Nothing to maintain. Limits: GitHub-centric, no API keys or gateways, idle sessions pause.
+2. **Do you only need to steer a session on a machine that stays on?**
+   Use Remote Control from your own computer. It needs a claude.ai subscription login, and the `claude` process must keep running.
+3. **Do you pay per token, use OpenRouter or a gateway, need root, Docker, or long-running services?**
+   Run Claude Code on a server you control. Follow guides 01, 03, 05, then 04.
+4. **Do you want a server but not the sysadmin work?**
+   Use a prepared managed server (see the table below), or do guides 01 to 05 yourself on any VPS.
 
-Watch or star the repo to follow along. Issues with requests and corrections are welcome.
+## Contents
+
+- [guides/](guides/) - step-by-step walkthroughs
+  - [01 Run Claude Code on a VPS](guides/01-run-claude-code-on-a-vps.md)
+  - [02 Claude Code on your phone](guides/02-claude-code-on-your-phone.md)
+  - [03 Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md)
+  - [04 API keys and gateways](guides/04-api-keys-and-gateways.md)
+  - [05 Server hardening checklist](guides/05-server-hardening-checklist.md)
+- [templates/](templates/) - configs you can copy as-is
+  - `tmux.conf`, `claude-session.sh`
+  - `claude-tmux.service` (systemd user unit), `claude-nightly.service` and `.timer`
+  - `00-hardening.conf` (sshd), `ufw-setup.sh`, `jail.local` (fail2ban)
+  - `settings.user.example.jsonc`, `settings.gateway.example.jsonc`, `settings.openrouter.example.jsonc`
+  - `codex-config.example.toml`
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Where can Claude Code run? Comparison
+
+Tags: **[always-on]** keeps running with your laptop closed. **[any-key]** works with API keys and gateways. **[claude.ai-login]** requires a claude.ai subscription login. **[you-maintain]** you patch and secure it.
+
+| Option | Where the session runs | Laptop can be off | API key / gateway | Phone access | Tags |
+| --- | --- | --- | --- | --- | --- |
+| Anthropic cloud sessions (claude.ai/code) | Anthropic-managed VM | Yes | No | Claude app, claude.ai/code | [always-on] [claude.ai-login] |
+| Remote Control | Your own computer | No | No | Claude app, claude.ai/code | [claude.ai-login] |
+| Self-managed VPS + tmux | Your server | Yes | Yes | SSH app, Tailscale | [always-on] [any-key] [you-maintain] |
+| Managed dedicated server with browser workspace (for example AlwaysAgent, see below) | Provider-hosted Linux VM | Yes | Yes, bring your own | Browser | [always-on] [any-key] |
+| Home PC or spare machine + SSH | Your machine | Only if it stays on | Yes | SSH app, Tailscale | [any-key] [you-maintain] |
+| GitHub Codespaces | Cloud dev container | Stops when idle (default idle timeout 30 min, configurable 5 to 240 min; 12 h max lifetime per GitHub docs) | Yes | Browser | [any-key] |
+| Claude Code GitHub Actions | CI runner | Yes | Yes | Via GitHub (`@claude` comments) | Event-driven, ephemeral |
+
+Notes on the table:
+
+- Remote Control and cloud sessions both need a claude.ai login. Per Anthropic's docs, API keys are not supported for Remote Control, and cloud sessions "aren't available through third-party providers". Setting `ANTHROPIC_BASE_URL` to a non-Anthropic host also disables Remote Control.
+- Codespaces and GitHub Actions rows are summarized from GitHub's documentation. Check GitHub's docs for current limits and billing.
+- A managed server and a self-managed VPS are the same thing technically. The difference is who does the setup and maintenance.
 
 ## Contributing
 
@@ -35,7 +79,7 @@ Contributions are welcome, especially corrections.
 
 ## About / Maintainer
 
-This repo is maintained by the team behind [AlwaysAgent](https://alwaysagent.app), a hosted option for running coding agents on a dedicated cloud Linux server with Claude Code and Codex preinstalled and a browser workspace. AlwaysAgent is not open for sign-ups yet; see the site for current status. It is an independent product and is not affiliated with Anthropic or OpenAI. The guides here work on any VPS and do not require it.
+This repo is maintained by the team behind [AlwaysAgent](https://alwaysagent.app), a hosted option in the "managed dedicated server" row above: a dedicated cloud Linux server with Claude Code and Codex preinstalled and a browser workspace. AlwaysAgent is not open for sign-ups yet; see the site for current status. It is an independent product and is not affiliated with Anthropic or OpenAI. The guides here work on any VPS and do not require it.
 
 ## License
 

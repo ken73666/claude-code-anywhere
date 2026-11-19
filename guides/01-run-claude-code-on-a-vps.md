@@ -6,7 +6,7 @@ A small Linux server, the official installer, and tmux are enough to keep Claude
 
 ## Why a server
 
-Claude Code runs on the machine where you start it. If that machine sleeps or shuts down, the task stops. An always-on server fixes that, and you can reach the session from any device. Anthropic's own options have limits: Remote Control sessions run on your machine ("your computer has to stay on"), and cloud sessions need a claude.ai account and do not accept API keys or third-party providers. A server you control has neither restriction. See the comparison in the README.
+Claude Code runs on the machine where you start it. If that machine sleeps or shuts down, the task stops. An always-on server fixes that, and you can reach the session from any device. Anthropic's own options have limits: Remote Control sessions run on your machine ("your computer has to stay on"), and cloud sessions need a claude.ai account and do not accept API keys or third-party providers. A server you control has neither restriction. See the [comparison in the README](../README.md#where-can-claude-code-run-comparison).
 
 ## 1. Pick a server
 
