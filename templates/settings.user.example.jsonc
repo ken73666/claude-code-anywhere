@@ -3,7 +3,7 @@
 // Install: remove all // comment lines (JSON does not allow comments), save as ~/.claude/settings.json,
 //          then: chmod 600 ~/.claude/settings.json
 // Never put credentials in a project's committed .claude/settings.json.
-// Permission rules: "Bash(npm run test *)" is the current prefix-match form (the older "Bash(npm run test *)" suffix
+// Permission rules: "Bash(npm run test *)" is the current prefix-match form (the older "Bash(npm run test:*)" suffix
 //          is still accepted as equivalent); Read(./.env) is a gitignore-style path relative to the working directory.
 //          See code.claude.com/docs/en/permissions. Edit the commands before use.
 {

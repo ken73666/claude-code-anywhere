@@ -39,11 +39,11 @@ Facts about Anthropic's features (Remote Control, cloud sessions) come from Anth
   - [04 API keys and gateways](guides/04-api-keys-and-gateways.md)
   - [05 Server hardening checklist](guides/05-server-hardening-checklist.md)
 - [templates/](templates/) - configs you can copy as-is
-  - `tmux.conf`, `claude-session.sh`
-  - `claude-tmux.service` (systemd user unit), `claude-nightly.service` and `.timer`
-  - `00-hardening.conf` (sshd), `ufw-setup.sh`, `jail.local` (fail2ban)
-  - `settings.user.example.jsonc`, `settings.gateway.example.jsonc`, `settings.openrouter.example.jsonc`
-  - `codex-config.example.toml`
+  - [`tmux.conf`](templates/tmux.conf), [`claude-session.sh`](templates/claude-session.sh)
+  - [`claude-tmux.service`](templates/claude-tmux.service) (systemd user unit), [`claude-nightly.service`](templates/claude-nightly.service) and [`.timer`](templates/claude-nightly.timer)
+  - [`00-hardening.conf`](templates/00-hardening.conf) (sshd), [`ufw-setup.sh`](templates/ufw-setup.sh), [`jail.local`](templates/jail.local) (fail2ban)
+  - [`settings.user.example.jsonc`](templates/settings.user.example.jsonc), [`settings.gateway.example.jsonc`](templates/settings.gateway.example.jsonc), [`settings.openrouter.example.jsonc`](templates/settings.openrouter.example.jsonc)
+  - [`codex-config.example.toml`](templates/codex-config.example.toml)
 - [CHANGELOG.md](CHANGELOG.md)
 
 ## Where can Claude Code run? Comparison
