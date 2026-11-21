@@ -44,6 +44,7 @@ Facts about Anthropic's features (Remote Control, cloud sessions) come from Anth
   - [`00-hardening.conf`](templates/00-hardening.conf) (sshd), [`ufw-setup.sh`](templates/ufw-setup.sh), [`jail.local`](templates/jail.local) (fail2ban)
   - [`settings.user.example.jsonc`](templates/settings.user.example.jsonc), [`settings.gateway.example.jsonc`](templates/settings.gateway.example.jsonc), [`settings.openrouter.example.jsonc`](templates/settings.openrouter.example.jsonc)
   - [`codex-config.example.toml`](templates/codex-config.example.toml)
+- [CONTRIBUTING.md](CONTRIBUTING.md)
 - [CHANGELOG.md](CHANGELOG.md)
 
 ## Where can Claude Code run? Comparison
@@ -68,7 +69,7 @@ Notes on the table:
 
 ## Contributing
 
-Contributions are welcome, especially corrections.
+Contributions are welcome, especially corrections. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 - Open an issue if a command no longer works, a limit changed, or a statement is out of date. Include the OS/version you tested on.
 - Pull requests should be small and focused: one guide fix, one new template, or one new troubleshooting entry.
