@@ -121,6 +121,16 @@ Total = server rental + model usage. The server is a flat rate that accrues whil
 | Session gone after reconnecting | You ran `claude` outside tmux |
 | Remote Control will not start | Check login and base-URL limits, then `claude remote-control --verbose` |
 
+## Other distributions
+
+The commands in this guide are written for Debian and Ubuntu (`apt`, `adduser`, `ufw`). Anthropic's system requirements also list Alpine 3.19+, and its setup guide publishes signed apt, dnf, and apk repositories as an alternative to the install script. If you are not on Debian or Ubuntu:
+
+- Use your own package manager where this guide says `apt`, and the matching repository from Anthropic's setup guide if you prefer packages over the install script.
+- Alpine uses OpenRC, not systemd, so the systemd units in [guide 03](03-keep-sessions-alive-tmux-systemd.md) do not apply there. Start the tmux session by hand or from your init system.
+- The hardening steps in [guide 05](05-server-hardening-checklist.md) name Debian/Ubuntu packages and service names (`ssh`, `ufw`, `unattended-upgrades`). Look up the equivalents for your distribution.
+
+These notes come from Anthropic's documentation, not from test runs on those distributions. Corrections are welcome.
+
 ## Prefer not to run the server yourself?
 
 Everything above works on any VPS. If you would rather skip the server administration, a managed dedicated server is the same idea with the setup done. One example is [AlwaysAgent](https://alwaysagent.app) (not open for sign-ups yet), which is maintained by the authors of this repo.
