@@ -127,6 +127,14 @@ Anything bound to `0.0.0.0` or `::` that you did not intend (a dev server, a dat
 
 Docker note: per Docker's packet-filtering docs, container traffic is routed in the `nat` table before ufw's rules apply, so published ports can ignore your ufw configuration. Publish to loopback (`-p 127.0.0.1:3000:3000`) unless you intend to expose the port.
 
+To see what Docker has published:
+
+```bash
+docker ps --format 'table {{.Names}}\t{{.Ports}}'
+```
+
+A mapping that starts with `0.0.0.0:` or `[::]:` is open to the network whatever ufw says. `127.0.0.1:` is local only. In Docker Compose, write the loopback address into the mapping: `"127.0.0.1:3000:3000"`. To confirm from outside, run `nc -vz YOUR_SERVER_IP 3000` from another machine; it should fail for ports you meant to keep private. If you need to filter published ports, Docker's documentation describes the `DOCKER-USER` chain for that purpose; ufw rules alone will not do it.
+
 ## Quick audit
 
 ```bash
