@@ -140,3 +140,16 @@ For a custom provider, edit `~/.codex/config.toml` (see [`templates/codex-config
 | 404 or connection errors | Wrong `ANTHROPIC_BASE_URL` (extra `/v1`, wrong path) |
 | 400 about unrecognized fields | Upstream rejects fields Claude Code sends. Anthropic documents `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` for gateways |
 | Asked to log in even though the key works | The `env` block is in a project settings file. Move it to `~/.claude/settings.json` |
+
+## Official documentation
+
+Check these first when something here no longer matches your version:
+
+- Claude Code authentication: https://code.claude.com/docs/en/authentication.md
+- Claude Code environment variables: https://code.claude.com/docs/en/env-vars.md
+- Claude Code model configuration: https://code.claude.com/docs/en/model-config.md
+- LLM gateway requirements: https://code.claude.com/docs/en/llm-gateway
+- Connecting Claude Code to a gateway: https://code.claude.com/docs/en/llm-gateway-connect.md
+- OpenRouter's Claude Code integration: https://openrouter.ai/docs/guides/guides/claude-code-integration
+- Codex authentication: https://developers.openai.com/codex/auth
+- Codex advanced configuration: https://developers.openai.com/codex/config-advanced
