@@ -38,7 +38,7 @@ Facts about Anthropic's features (Remote Control, cloud sessions) come from Anth
   - [03 Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md)
   - [04 API keys and gateways](guides/04-api-keys-and-gateways.md)
   - [05 Server hardening checklist](guides/05-server-hardening-checklist.md)
-- [templates/](templates/) - configs you can copy as-is
+- [templates/](templates/) - configs you can copy as-is ([index with install locations](templates/README.md))
   - [`tmux.conf`](templates/tmux.conf), [`claude-session.sh`](templates/claude-session.sh)
   - [`claude-tmux.service`](templates/claude-tmux.service) (systemd user unit), [`claude-nightly.service`](templates/claude-nightly.service) and [`.timer`](templates/claude-nightly.timer)
   - [`00-hardening.conf`](templates/00-hardening.conf) (sshd), [`ufw-setup.sh`](templates/ufw-setup.sh), [`jail.local`](templates/jail.local) (fail2ban)
