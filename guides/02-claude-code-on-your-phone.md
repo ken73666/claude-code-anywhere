@@ -91,3 +91,12 @@ A browser workspace puts chat, files, a terminal, and preview on a server you do
 **Does my laptop need to stay on?** For Remote Control, yes. For cloud sessions and servers, no.
 
 **What if I just want to approve a prompt while away?** Any of the above works. SSH + tmux is the lowest-friction fallback.
+
+## Official documentation
+
+Plan requirements and limits for Remote Control and cloud sessions change. Check Anthropic's pages before relying on them:
+
+- Remote Control: https://code.claude.com/docs/en/remote-control.md
+- Cloud sessions (Claude Code on the web): https://code.claude.com/docs/en/claude-code-on-the-web.md
+- Mobile app: https://code.claude.com/docs/en/mobile.md
+- Authentication: https://code.claude.com/docs/en/authentication.md
