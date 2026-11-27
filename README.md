@@ -17,6 +17,7 @@ Facts about Anthropic's features (Remote Control, cloud sessions) come from Anth
 | Stop sessions dying on SSH drops or reboots | [03 Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md) |
 | Use an API key, OpenRouter, or a company gateway | [04 API keys and gateways](guides/04-api-keys-and-gateways.md) |
 | Harden a fresh server before putting credentials on it | [05 Server hardening checklist](guides/05-server-hardening-checklist.md) |
+| Reach the server only over a private network | [06 Private SSH with Tailscale](guides/06-private-ssh-with-tailscale.md) |
 | Just copy a working config | [templates/](templates/) |
 
 ### Decision tree
@@ -38,6 +39,7 @@ Facts about Anthropic's features (Remote Control, cloud sessions) come from Anth
   - [03 Keep sessions alive: tmux and systemd](guides/03-keep-sessions-alive-tmux-systemd.md)
   - [04 API keys and gateways](guides/04-api-keys-and-gateways.md)
   - [05 Server hardening checklist](guides/05-server-hardening-checklist.md)
+  - [06 Private SSH with Tailscale](guides/06-private-ssh-with-tailscale.md)
 - [templates/](templates/) - configs you can copy as-is ([index with install locations](templates/README.md))
   - [`tmux.conf`](templates/tmux.conf), [`claude-session.sh`](templates/claude-session.sh)
   - [`claude-tmux.service`](templates/claude-tmux.service) (systemd user unit), [`claude-nightly.service`](templates/claude-nightly.service) and [`.timer`](templates/claude-nightly.timer)

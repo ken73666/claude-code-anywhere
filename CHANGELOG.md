@@ -4,8 +4,14 @@ All notable changes to this repo.
 
 ## [Unreleased]
 
-- Planned: Codex CLI section in guide 04 expanded with more provider examples.
-- Planned: Tailscale-only SSH variant of the hardening checklist.
+### Added
+- Guide 06: private SSH with Tailscale.
+- CONTRIBUTING.md and an issue template for outdated commands.
+- templates/README.md with install locations.
+- Docker published-port checks in guide 05, a distribution note in guide 01, and links to official documentation in guides 02 and 04.
+
+### Planned
+- Codex CLI section in guide 04 expanded with more provider examples.
 
 ## [0.1.0] - 2026-11-20
 
